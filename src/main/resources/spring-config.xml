@@ -27,9 +27,11 @@
 
     <!--<bean class="cn.zjc.config.AppConfig"/>-->
 
-    <!--<import resource="spring-redis.xml"/>-->
+    <!--单机配置-->
+    <import resource="spring-redis.xml"/>
 
-    <import resource="spring-redis-cluster.xml"/>
+    <!--集群配置-->
+    <!--<import resource="spring-redis-cluster.xml"/>-->
 
 
 

@@ -1,5 +1,6 @@
 package cn.zjc;
 
+import cn.zjc.cluster.JedisClusterFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,14 @@ public class TestScope {
 //    }
 
 
-    @Autowired
-    private cn.zjc.config.JedisClusterFactory jedisClusterFactory;
-
-    @Test
-    public void Test3() {
-        JedisCluster jedisCluster = jedisClusterFactory.getJedisCluster();
-        jedisCluster.set("zjc".getBytes(), "hello zjc".getBytes());
-
-        System.out.println("获取到的值--> " + new String(jedisCluster.get("zjc".getBytes())));
-    }
+//    @Autowired
+//    private JedisClusterFactory jedisClusterFactory;
+//
+//    @Test
+//    public void Test3() {
+//        JedisCluster jedisCluster = jedisClusterFactory.getJedisCluster();
+//        jedisCluster.set("zjc".getBytes(), "hello zjc".getBytes());
+//
+//        System.out.println("获取到的值--> " + new String(jedisCluster.get("zjc".getBytes())));
+//    }
 }

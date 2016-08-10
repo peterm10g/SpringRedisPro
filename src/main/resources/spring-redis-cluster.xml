@@ -31,8 +31,8 @@
     </bean>
 
 
-    <!--Jedis Cluster-->
-       <bean id="jedisCluster" class="cn.zjc.config.JedisClusterFactory">
+       <!--Jedis ClusterFactory-->
+       <bean id="jedisClusterFactory" class="cn.zjc.cluster.JedisClusterFactory">
            <property name="location" value="classpath:redis-cluster.properties"/>
            <property name="connectionTime" value="3000"/>
            <property name="soTimeout" value="3000"/>
@@ -47,7 +47,6 @@
                <!--</set>-->
            <!--</property>-->
        </bean>
-
 
 
 

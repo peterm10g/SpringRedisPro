@@ -36,15 +36,23 @@
           p:testOnBorrow="true"
           p:testOnReturn="true"/>
 
-    <!--redisTemplate-->
+    <!--redisTemplate,key使用StringRedisSerializer，value使用JdkSerializationRedisSerializer-->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="jedisConnectionFactory"/>
+          p:connectionFactory-ref="jedisConnectionFactory"
+          p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"
+          p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"
+    />
 
-    <!--stringRedisTemplate-->
+    <!--stringRedisTemplate,默认使用StringRedisSerializer-->
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
-          p:connection-factory-ref="jedisConnectionFactory"/>
+          p:connection-factory-ref="jedisConnectionFactory"
+    />
 
+    <!--&lt;!&ndash; turn on declarative caching &ndash;&gt;-->
+    <!--<cache:annotation-driven />-->
 
+    <!--&lt;!&ndash; declare Redis Cache Manager &ndash;&gt;-->
+    <!--<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"-->
 
 
 </beans>    
