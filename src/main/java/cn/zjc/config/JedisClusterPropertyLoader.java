@@ -7,7 +7,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.PropertiesPersister;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -18,6 +17,9 @@ import java.util.*;
  * @function 加载classpath的资源文件
  */
 public class JedisClusterPropertyLoader {
+
+    private JedisClusterPropertyLoader() {
+    }
 
     private static final String DEFAULT_CHARSET = "UTF-8";
 
@@ -32,34 +34,18 @@ public class JedisClusterPropertyLoader {
         for (String location : locations) {
             logger.debug("Loading properties file from classpath:" + location);
 
-            InputStream in = null;
-			InputStreamReader isr = null;
-            try {
-                if (location.startsWith("classpath:")) {
-                    location = location.replace("classpath:", "");  //除去多的classpath
-                }
-                Resource resource = new ClassPathResource(location);
-                in = resource.getInputStream();
-				isr = new InputStreamReader(in, DEFAULT_CHARSET);
+            if (location.startsWith("classpath:")) {
+                location = location.replace("classpath:", "");  //除去多的classpath
+            }
+
+            Resource resource = new ClassPathResource(location);
+            try(
+                 InputStream in =  resource.getInputStream();
+                 InputStreamReader isr = new InputStreamReader(in, DEFAULT_CHARSET)) {
                 propertiesPersister.load(props, isr);
             } catch (Exception e) {
                 logger.error("Could not load properties from classpath:" + location + "! Error message : " + e.getMessage());
-            } finally {
-
-                if (isr != null){
-					try {
-						isr.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				if (in != null) {
-					try {
-						in.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
+                return null;
             }
         }
         return props;

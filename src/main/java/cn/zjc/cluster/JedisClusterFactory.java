@@ -35,7 +35,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 		jedisClusterNodes = JedisClusterPropertyLoader.loadSettings(location, prefix);
 
 		//获取jedisClusterPropertis
-		if (jedisClusterNodes == null || jedisClusterNodes.size() == 0) {
+		if (jedisClusterNodes == null || jedisClusterNodes.isEmpty()) {
 			throw new RuntimeException("Jedis cluster nodes null");
 		}
 
@@ -60,7 +60,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 
 	@Override
 	public Class<?> getObjectType() {
-		return (this.jedisCluster != null ? this.jedisCluster.getClass() : JedisCluster.class);
+		return this.jedisCluster != null ? this.jedisCluster.getClass() : JedisCluster.class;
 	}
 
 	//单例的bean

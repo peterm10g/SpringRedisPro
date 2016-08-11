@@ -124,7 +124,12 @@ public class JedisStringService {
 		return stringRedisTemplate.execute(new RedisCallback<String>() {
 			@Override
 			public String doInRedis(RedisConnection redisConnection) throws DataAccessException {
-				return new String(redisConnection.get(key));
+				byte[] value = redisConnection.get(key);
+				if (value == null || value.length == 0){
+					return null;
+				}else {
+					return new String(value);
+				}
 			}
 		});
 	}

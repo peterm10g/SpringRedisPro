@@ -1,6 +1,8 @@
 package cn.zjc;
 
 import cn.zjc.cluster.JedisClusterFactory;
+import cn.zjc.single.JedisBasicService;
+import cn.zjc.single.JedisStringService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +53,26 @@ public class TestScope {
 //
 //        System.out.println("获取到的值--> " + new String(jedisCluster.get("zjc".getBytes())));
 //    }
+
+
+    @Autowired
+    private JedisStringService jedisStringService;
+    @Autowired
+    private JedisBasicService jedisBasicService;
+
+    @Test
+    public void Test3() {
+        String ping = jedisBasicService.ping();
+        System.out.println("ping信息--> " + ping);
+
+        System.out.println("database size --> " + jedisBasicService.getDataBaseSize());
+
+        jedisStringService.set("zjc","hello world");
+
+        System.out.println("key为zjc的值-->" + jedisStringService.get("zjc"));
+
+        jedisBasicService.expire("zjc",0);
+
+        System.out.println("强制过期后key为zjc的值-->" + jedisStringService.get("zjc"));
+    }
 }

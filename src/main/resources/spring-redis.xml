@@ -36,16 +36,21 @@
           p:testOnBorrow="true"
           p:testOnReturn="true"/>
 
-    <!--redisTemplate,key使用StringRedisSerializer，value使用JdkSerializationRedisSerializer-->
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="jedisConnectionFactory"
-          p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"
-          p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"
-    />
+    <!--使用fastjson序列化器-->
+    <bean id="fastjsonSerializer" class="cn.zjc.config.serializer.FastjsonSerializer"/>
 
-    <!--stringRedisTemplate,默认使用StringRedisSerializer-->
+    <!--redisTemplate,使用fastjson序列化器-->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="defaultSerializer" ref="fastjsonSerializer"/>
+    </bean>
+
+
+
+    <!--stringRedisTemplate,,使用fastjson序列化器-->
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
           p:connection-factory-ref="jedisConnectionFactory"
+          p:defaultSerializer-ref="fastjsonSerializer"
     />
 
     <!--&lt;!&ndash; turn on declarative caching &ndash;&gt;-->

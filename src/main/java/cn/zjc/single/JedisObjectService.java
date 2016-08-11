@@ -80,7 +80,7 @@ public class JedisObjectService {
 	 */
 	public void delByPattern(String pattern) {
 		Set<String> keys = redisTemplate.keys(pattern);
-		if (keys != null && keys.size() > 0) {
+		if (keys != null && !keys.isEmpty()) {
 			redisTemplate.delete(keys);
 		}
 	}
