@@ -2,9 +2,6 @@ package cn.zjc;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author zjc
  * @version 2016/8/11 0:51
@@ -28,4 +25,13 @@ public class TestWithoutSpring {
 			System.out.println("转化的值-->" + new String(key[i]));
 		}
 	}
+
+
+	@Test
+	public void Test2(){
+
+	}
+
+
+
 }

@@ -19,7 +19,7 @@ public class FastjsonSerializer<T> implements RedisSerializer<T> {
 
     private static final Logger log = LoggerFactory.getLogger(FastjsonSerializer.class);
 
-    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
+    private static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
     private Class<T> clazz;
 
@@ -35,6 +35,7 @@ public class FastjsonSerializer<T> implements RedisSerializer<T> {
         if (data == null || data.length == 0) {
             return null;
         } else {
+			log.debug("尝试使用fastjson序列化器进行反序列化对象==>:" + clazz);
             String src = new String(data, DEFAULT_CHARSET);
             return JSON.parseObject(src, clazz);
         }
@@ -45,6 +46,7 @@ public class FastjsonSerializer<T> implements RedisSerializer<T> {
         if (t == null) {
             return new byte[0];
         } else {
+        	log.debug("尝试使用fastjson序列化器进行序列化对象==>:" + t);
             return JSON.toJSONBytes(t, SerializerFeature.WriteClassName);
         }
     }

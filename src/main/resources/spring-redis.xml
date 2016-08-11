@@ -40,8 +40,6 @@
     <!--redisTemplate,使用jdk序列化器-->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="jedisConnectionFactory"/>
-        <property name="defaultSerializer"
-                  value="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
     </bean>
 
 

@@ -23,8 +23,7 @@ import java.util.List;
 @Service
 public class JedisStringService implements InitializingBean{
 
-	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+
 
 
 	@Autowired
@@ -158,6 +157,6 @@ public class JedisStringService implements InitializingBean{
 	//默认使用fastjson序列化器
 	@Override
 	public void afterPropertiesSet() throws Exception {
-         redisTemplate.setValueSerializer(new FastjsonSerializer<>(String.class));
+         stringRedisTemplate.setValueSerializer(new FastjsonSerializer<>(String.class));
 	}
 }

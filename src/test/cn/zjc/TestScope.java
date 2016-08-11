@@ -1,6 +1,7 @@
 package cn.zjc;
 
 import cn.zjc.cluster.JedisClusterFactory;
+import cn.zjc.entity.Person;
 import cn.zjc.single.JedisBasicService;
 import cn.zjc.single.JedisObjectService;
 import cn.zjc.single.JedisStringService;
@@ -56,34 +57,45 @@ public class TestScope {
 //    }
 
 
-    @Autowired
-    private JedisStringService jedisStringService;
-    @Autowired
-    private JedisBasicService jedisBasicService;
-    @Autowired
-    private JedisObjectService jedisObjectService;
+	@Autowired
+	private JedisStringService jedisStringService;
+	@Autowired
+	private JedisBasicService jedisBasicService;
+	@Autowired
+	private JedisObjectService jedisObjectService;
 
-    @Test
-    public void Test3() {
-        String ping = jedisBasicService.ping();
-        System.out.println("ping信息--> " + ping);
+	@Test
+	public void Test3() {
+		String ping = jedisBasicService.ping();
+		System.out.println("ping信息--> " + ping);
 
-        System.out.println("database size --> " + jedisBasicService.getDataBaseSize());
+		System.out.println("database size --> " + jedisBasicService.getDataBaseSize());
 
-        jedisStringService.set("zjc","hello world");
+		jedisStringService.set("zjc", "hello world");
 
-        System.out.println("key为zjc的值-->" + jedisStringService.get("zjc"));
+		System.out.println("key为zjc的值-->" + jedisStringService.get("zjc"));
 
-        jedisBasicService.expire("zjc",0);
+		jedisBasicService.expire("zjc", 0);
 
-        System.out.println("强制过期后key为zjc的值-->" + jedisStringService.get("zjc"));
-    }
+		System.out.println("强制过期后key为zjc的值-->" + jedisStringService.get("zjc"));
+	}
 
-    @Test
-    public void TestObject(){
-        Integer[] intArray = {1,2,3};
-        jedisObjectService.set("array1",intArray);
+	@Test
+	public void TestObject() {
+		Integer[] intArray = {1, 2, 3};
+		jedisObjectService.set("array1", intArray);
 
-        System.out.println("反序列化后的value-- > " + jedisObjectService.get("array1").getClass().getTypeName());
-    }
+		System.out.println("反序列化后的value-- > " + jedisObjectService.get("array1").getClass().getTypeName());
+	}
+
+
+	@Autowired
+	private PersonService personService;
+
+	@Test
+	public void TestT() {
+		personService.set("zjc", new Person(1, "zjcscut"));
+
+		System.out.println("T服务取出的值为-->" + personService.get("zjc"));
+	}
 }
