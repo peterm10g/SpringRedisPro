@@ -2,6 +2,7 @@ package cn.zjc;
 
 import cn.zjc.cluster.JedisClusterFactory;
 import cn.zjc.single.JedisBasicService;
+import cn.zjc.single.JedisObjectService;
 import cn.zjc.single.JedisStringService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +60,8 @@ public class TestScope {
     private JedisStringService jedisStringService;
     @Autowired
     private JedisBasicService jedisBasicService;
+    @Autowired
+    private JedisObjectService jedisObjectService;
 
     @Test
     public void Test3() {
@@ -74,5 +77,13 @@ public class TestScope {
         jedisBasicService.expire("zjc",0);
 
         System.out.println("强制过期后key为zjc的值-->" + jedisStringService.get("zjc"));
+    }
+
+    @Test
+    public void TestObject(){
+        Integer[] intArray = {1,2,3};
+        jedisObjectService.set("array1",intArray);
+
+        System.out.println("反序列化后的value-- > " + jedisObjectService.get("array1").getClass().getTypeName());
     }
 }

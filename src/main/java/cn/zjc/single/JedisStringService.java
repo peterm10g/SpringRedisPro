@@ -1,5 +1,7 @@
 package cn.zjc.single;
 
+import cn.zjc.config.serializer.FastjsonSerializer;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 
 @Service
-public class JedisStringService {
+public class JedisStringService implements InitializingBean{
 
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
@@ -150,5 +152,12 @@ public class JedisStringService {
 				return redisConnection.del(key);
 			}
 		});
+	}
+
+
+	//默认使用fastjson序列化器
+	@Override
+	public void afterPropertiesSet() throws Exception {
+         redisTemplate.setValueSerializer(new FastjsonSerializer<>(String.class));
 	}
 }
