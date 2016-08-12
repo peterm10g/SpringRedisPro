@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author zhangjinci
  * @version 2016/8/10 12:20
- * @function 例子
+ * @function jedis处理值为String的对象
  */
 
 @Service

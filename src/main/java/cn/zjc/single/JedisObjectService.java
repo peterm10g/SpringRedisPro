@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class JedisObjectService {
 
 	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
+	protected RedisTemplate<String, Object> redisTemplate;
 
 	/**
 	 * set操作
@@ -38,7 +38,7 @@ public class JedisObjectService {
 	 * @param value
 	 * @param expire
 	 */
-	public void set(String key, String value, long expire) {
+	public void set(String key, Object value, long expire) {
 		set(key, value, expire, TimeUnit.SECONDS);
 	}
 
@@ -61,7 +61,7 @@ public class JedisObjectService {
 	 * @param key
 	 * @return
 	 */
-	public Object get(String key) {
+	public Object get(Object key) {
 		ValueOperations<String, Object> operations = redisTemplate.opsForValue();
 		return operations.get(key);
 	}
@@ -84,9 +84,5 @@ public class JedisObjectService {
 			redisTemplate.delete(keys);
 		}
 	}
-
-
-	
-
 
 }

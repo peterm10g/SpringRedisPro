@@ -1,4 +1,4 @@
-package cn.zjc.config;
+package cn.zjc.config.loader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

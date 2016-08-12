@@ -1,6 +1,6 @@
 package cn.zjc.cluster;
 
-import cn.zjc.config.JedisClusterPropertyLoader;
+import cn.zjc.config.loader.JedisClusterPropertyLoader;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;

@@ -50,14 +50,20 @@
     />
 
 
-    <!--Redis缓存部分暂时没实现-->
 
 
-    <!--&lt;!&ndash; turn on declarative caching &ndash;&gt;-->
-    <!--<cache:annotation-driven />-->
 
-    <!--&lt;!&ndash; declare Redis Cache Manager &ndash;&gt;-->
-    <!--<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"-->
+    <!-- turn on declarative caching -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+
+    <!-- declare Redis Cache Manager -->
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+      <property name="caches">
+          <set>
+
+          </set>
+      </property>
+    </bean>
 
 
 </beans>    
