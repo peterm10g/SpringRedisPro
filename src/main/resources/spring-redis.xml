@@ -50,9 +50,6 @@
     />
 
 
-
-
-
     <!-- turn on declarative caching -->
     <cache:annotation-driven cache-manager="cacheManager"/>
 

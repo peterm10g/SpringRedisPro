@@ -33,7 +33,7 @@
 
        <!--Jedis ClusterFactory-->
        <bean id="jedisClusterFactory" class="cn.zjc.cluster.JedisClusterFactory">
-           <property name="location" value="classpath:redis-cluster.properties"/>
+           <property name="location" value="redis-cluster.properties"/>
            <property name="connectionTime" value="3000"/>
            <property name="soTimeout" value="3000"/>
            <property name="maxRedirections" value="5"/>

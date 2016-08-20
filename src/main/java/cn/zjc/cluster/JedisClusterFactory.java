@@ -9,6 +9,7 @@ import redis.clients.jedis.JedisCluster;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author zhangjinci
@@ -28,6 +29,8 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 
 	private static final String SEPARATOR = ":";
 
+	private Pattern p = Pattern.compile("^.+[:]\\d{1,5}\\s*$"); //正则匹配地址类型
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 
@@ -41,12 +44,14 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 
 		Set<HostAndPort> haps = new HashSet<>();
 		for (String node : jedisClusterNodes) {
-			String[] arr = node.split(SEPARATOR);
-			if (arr.length != 2) {
-				throw new RuntimeException("Jedis cluster nodes address format error");
+			if (!p.matcher(node).matches()){
+				continue;
 			}
-
-			haps.add(new HostAndPort(arr[0], Integer.valueOf(arr[1])));
+			String[] ipAndPort = node.split(SEPARATOR);
+			if (ipAndPort.length != 2) {
+				continue;
+			}
+			haps.add(new HostAndPort(ipAndPort[0], Integer.valueOf(ipAndPort[1])));
 		}
 
 		jedisCluster = new JedisCluster(haps, connectionTime, soTimeout, maxRedirections, genericObjectPoolConfig);
