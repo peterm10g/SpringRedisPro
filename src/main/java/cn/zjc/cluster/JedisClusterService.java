@@ -9,10 +9,10 @@ import redis.clients.jedis.JedisCluster;
  * @version 2016/8/10 23:47
  * @description jedis集群服务类
  */
-@Service
+//@Service
 public class JedisClusterService {
 
-    @Autowired
+//    @Autowired
     private JedisClusterFactory jedisClusterFactory;
 
     private JedisCluster jedisCluster;

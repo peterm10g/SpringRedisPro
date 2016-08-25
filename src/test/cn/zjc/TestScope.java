@@ -57,45 +57,34 @@ public class TestScope {
 //    }
 
 
-	@Autowired
-	private JedisStringService jedisStringService;
-	@Autowired
-	private JedisBasicService jedisBasicService;
-	@Autowired
-	private JedisObjectService jedisObjectService;
+    @Autowired
+    private JedisStringService jedisStringService;
+    @Autowired
+    private JedisBasicService jedisBasicService;
+    @Autowired
+    private JedisObjectService jedisObjectService;
 
-	@Test
-	public void Test3() {
-		String ping = jedisBasicService.ping();
-		System.out.println("ping信息--> " + ping);
+    @Autowired
+    private PersonService personService;
 
-		System.out.println("database size --> " + jedisBasicService.getDataBaseSize());
-
-		jedisStringService.set("zjc", "hello world");
-
-		System.out.println("key为zjc的值-->" + jedisStringService.get("zjc"));
-
-		jedisBasicService.expire("zjc", 0);
-
-		System.out.println("强制过期后key为zjc的值-->" + jedisStringService.get("zjc"));
-	}
-
-	@Test
-	public void TestObject() {
-		Integer[] intArray = {1, 2, 3};
-		jedisObjectService.set("array1", intArray);
-
-		System.out.println("反序列化后的value-- > " + jedisObjectService.get("array1").getClass().getTypeName());
-	}
+    @Test
+    public void Test3() {
+        personService.set("name", new Person(1, "zjcscut"), 5L);
 
 
-	@Autowired
-	private PersonService personService;
+        System.out.println(personService.get("name"));
 
-	@Test
-	public void TestT() {
-		personService.set("zjc", new Person(1, "zjcscut"));
 
-		System.out.println("T服务取出的值为-->" + personService.get("zjc"));
-	}
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(personService.get("name"));
+
+
+    }
+
+
 }

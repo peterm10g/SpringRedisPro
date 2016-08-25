@@ -1,7 +1,7 @@
 package cn.zjc;
 
 import cn.zjc.entity.Person;
-import cn.zjc.single.JedisTypeService;
+import cn.zjc.single.AbstractJedisService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,10 +10,16 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class PersonService extends JedisTypeService<Person>{
+public class PersonService extends AbstractJedisService<String,Person> {
+
 
 	@Override
-	protected Class<Person> getTypeClass() {
+	protected Class getKeyType() {
+		return String.class;
+	}
+
+	@Override
+	protected Class getValueType() {
 		return Person.class;
 	}
 }
