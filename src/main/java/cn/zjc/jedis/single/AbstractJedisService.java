@@ -1,6 +1,6 @@
-package cn.zjc.single;
+package cn.zjc.jedis.single;
 
-import cn.zjc.config.serializer.FastjsonSerializer;
+import cn.zjc.jedis.config.serializer.FastjsonSerializer;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,10 +16,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author zhangjinci
  * @version 2016/8/25 17:58
- * @function 抽象Jedis服务类
+ * @function 抽象Jedis服务类(普通同步方式)
  */
 @Component
-public abstract class AbstractJedisService<K, V> implements InitializingBean{
+public abstract class AbstractJedisService<K, V> implements InitializingBean {
 
     @Autowired
     private RedisTemplate<K, V> redisTemplate;
@@ -159,11 +159,12 @@ public abstract class AbstractJedisService<K, V> implements InitializingBean{
 
     /**
      * 匹配删除
+     *
      * @param pattern
      */
-    public void delByPattern(K pattern){
+    public void delByPattern(K pattern) {
         Set<K> keys = redisTemplate.keys(pattern);
-        if (keys != null && !keys.isEmpty()){
+        if (keys != null && !keys.isEmpty()) {
             redisTemplate.delete(keys);
         }
     }
@@ -200,11 +201,12 @@ public abstract class AbstractJedisService<K, V> implements InitializingBean{
 
     /**
      * 重命名K-V
+     *
      * @param oldKey
      * @param newKay
      * @return
      */
-    public Boolean rename(K oldKey,K newKay){
+    public Boolean rename(K oldKey, K newKay) {
         return redisTemplate.renameIfAbsent(oldKey, newKay);
     }
 

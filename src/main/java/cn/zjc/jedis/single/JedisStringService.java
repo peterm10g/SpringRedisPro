@@ -1,4 +1,4 @@
-package cn.zjc.single;
+package cn.zjc.jedis.single;
 
 
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class JedisStringService extends AbstractJedisService{
+public class JedisStringService extends AbstractJedisService<String,String>{
 
 	@Override
 	protected Class getKeyType() {

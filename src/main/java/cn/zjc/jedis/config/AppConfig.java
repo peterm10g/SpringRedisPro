@@ -1,4 +1,4 @@
-//package cn.zjc.config;
+//package cn.zjc.jedis.config;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Value;

@@ -1,18 +1,13 @@
 package cn.zjc;
 
-import cn.zjc.cluster.JedisClusterFactory;
-import cn.zjc.entity.Person;
-import cn.zjc.single.JedisBasicService;
-import cn.zjc.single.JedisObjectService;
-import cn.zjc.single.JedisStringService;
+import cn.zjc.jedis.single.JedisBasicService;
+import cn.zjc.jedis.single.JedisObjectService;
+import cn.zjc.jedis.single.JedisStringService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.RedisClusterConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import redis.clients.jedis.JedisCluster;
 
 /**
  * @author zhangjinci
@@ -69,20 +64,21 @@ public class TestScope {
 
     @Test
     public void Test3() {
-        personService.set("name", new Person(1, "zjcscut"), 5L);
+//        personService.set("name", new Person(1, "zjcscut"), 5L);
+//
+//
+//        System.out.println(personService.get("name"));
+//
+//
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(personService.get("name"));
 
-
-        System.out.println(personService.get("name"));
-
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(personService.get("name"));
-
+        personService.hello("zjcscut");
 
     }
 

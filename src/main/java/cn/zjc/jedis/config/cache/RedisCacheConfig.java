@@ -1,7 +1,7 @@
-//package cn.zjc.config.cache;
+//package cn.zjc.jedis.config.cache;
 //
-//import cn.zjc.config.serializer.FastjsonSerializer;
-//import cn.zjc.single.JedisObjectService;
+//import cn.zjc.jedis.config.serializer.FastjsonSerializer;
+//import cn.zjc.jedis.single.JedisObjectService;
 //import org.springframework.cache.Cache;
 //import org.springframework.cache.support.SimpleValueWrapper;
 //import org.springframework.dao.DataAccessException;

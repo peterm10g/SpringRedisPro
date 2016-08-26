@@ -1,4 +1,4 @@
-package cn.zjc.single;
+package cn.zjc.jedis.single;
 
 
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @description 处理jedis值为Object的服务类
  */
 @Service
-public class JedisObjectService extends AbstractJedisService {
+public class JedisObjectService extends AbstractJedisService<String,Object> {
 
     @Override
     protected Class getKeyType() {

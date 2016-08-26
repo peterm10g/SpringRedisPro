@@ -1,6 +1,7 @@
-package cn.zjc.cluster;
+package cn.zjc.jedis.cluster;
 
-import cn.zjc.config.loader.JedisClusterPropertyLoader;
+import cn.zjc.jedis.config.loader.JedisClusterPropertyLoader;
+import cn.zjc.jedis.exception.RedisCustomException;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -24,7 +25,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 	private Integer soTimeout = 3000;
 	private Integer maxRedirections = 5;
 	private Set<String> jedisClusterNodes;
-	private String location = "classpath:redis-cluster.properties";
+	private String location = "redis-cluster.properties";
 	private String prefix = "spring.redis.cluster";
 
 	private static final String SEPARATOR = ":";
@@ -39,7 +40,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>, Initializ
 
 		//获取jedisClusterPropertis
 		if (jedisClusterNodes == null || jedisClusterNodes.isEmpty()) {
-			throw new RuntimeException("Jedis cluster nodes null");
+			throw new RedisCustomException("Jedis cluster nodes null");
 		}
 
 		Set<HostAndPort> haps = new HashSet<>();

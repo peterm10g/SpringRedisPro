@@ -25,7 +25,7 @@
 
     <!--<context:annotation-config/>-->
 
-    <!--<bean class="cn.zjc.config.AppConfig"/>-->
+    <!--<bean class="cn.zjc.jedis.config.AppConfig"/>-->
 
     <!--单机配置-->
     <import resource="spring-redis.xml"/>
@@ -34,5 +34,6 @@
     <!--<import resource="spring-redis-cluster.xml"/>-->
 
 
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>    

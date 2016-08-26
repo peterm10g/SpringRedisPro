@@ -1,4 +1,4 @@
-package cn.zjc.config.serializer;
+package cn.zjc.jedis.config.serializer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 /**
  * @author zhangjinci
  * @version 2016/8/11 16:02
- * @function
+ * @function fastjson serializer
  */
 public class FastjsonSerializer<T> implements RedisSerializer<T> {
 

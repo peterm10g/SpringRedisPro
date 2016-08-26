@@ -1,4 +1,4 @@
-//package cn.zjc.config;
+//package cn.zjc.jedis.config;
 //
 //
 //import org.springframework.stereotype.Repository;

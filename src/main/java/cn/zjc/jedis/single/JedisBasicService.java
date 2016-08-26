@@ -1,4 +1,4 @@
-package cn.zjc.single;
+package cn.zjc.jedis.single;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -63,7 +63,7 @@ public class JedisBasicService {
 	}
 
 	/**
-	 * 获取数据库的大小(数量)
+	 * 获取数据库的大小(数量),Key的数量
 	 *
 	 * @return
 	 */

@@ -1,4 +1,4 @@
-package cn.zjc.cluster;
+package cn.zjc.jedis.cluster;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,19 +9,16 @@ import redis.clients.jedis.JedisCluster;
  * @version 2016/8/10 23:47
  * @description jedis集群服务类
  */
-//@Service
+@Service
 public class JedisClusterService {
 
-//    @Autowired
+    @Autowired(required = false)
     private JedisClusterFactory jedisClusterFactory;
 
     private JedisCluster jedisCluster;
 
     public JedisCluster getJedisCluster() {
-        return jedisCluster;
+        return jedisClusterFactory.getJedisCluster();
     }
 
-    public void setJedisCluster(JedisCluster jedisCluster) {
-        this.jedisCluster = jedisClusterFactory.getJedisCluster();
-    }
 }
